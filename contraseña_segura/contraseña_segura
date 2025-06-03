@@ -1,0 +1,36 @@
+# Validador de contraseñas seguras
+# Autor: Arian Casinghino
+# Descripción: Verifica si la contraseña ingresada cumple con los requisitos básicos de seguridad.
+
+def validar_contraseña(contraseña):
+    simbolos = "!@#$%^&*()"
+    longitud_minima = 8
+
+    tiene_mayuscula = any(letra.isupper() for letra in contraseña)
+    tiene_minuscula = any(letra.islower() for letra in contraseña)
+    tiene_numero = any(letra.isdigit() for letra in contraseña)
+    tiene_simbolo = any(letra in simbolos for letra in contraseña)
+
+    if len(contraseña) < longitud_minima:
+        return "❌ La contraseña es demasiado corta. Mínimo 8 caracteres."
+    elif not tiene_mayuscula:
+        return "❌ Debe contener al menos una letra mayúscula."
+    elif not tiene_minuscula:
+        return "❌ Debe contener al menos una letra minúscula."
+    elif not tiene_numero:
+        return "❌ Debe contener al menos un número."
+    elif not tiene_simbolo:
+        return "❌ Debe contener al menos un símbolo (!@#$%^&*())."
+    else:
+        return "✅ Contraseña segura."
+
+
+def main():
+    print("🔐 Validador de Contraseñas Seguras")
+    contraseña = input("Ingrese una contraseña para validar: ")
+    resultado = validar_contraseña(contraseña)
+    print(resultado)
+
+
+if __name__ == "__main__":
+    main()
